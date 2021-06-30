@@ -42,7 +42,7 @@ public class CodePostal implements IDataModel {
 	Pays pays;
 	
 	@OneToMany (mappedBy="codePostal")
-	@JsonBackReference
+	@JsonBackReference(value="codepostal-adresse")
 	private Set<Adresse> adresse;
 	
 	

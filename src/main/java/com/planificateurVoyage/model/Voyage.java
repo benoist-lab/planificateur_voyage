@@ -1,13 +1,17 @@
 package com.planificateurVoyage.model;
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 //import javax.persistence.JoinTable;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToMany;
@@ -23,7 +27,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name="F_VOYAGE")
-public class Voyage {
+public class Voyage implements IDataModel {
 	
 	 
 	@Column(name="id_voyage")
@@ -36,12 +40,18 @@ public class Voyage {
     
 	@Column(name="id_description")
     private String description;
+	
+	@ManyToOne
+	@JoinColumn (name="id_statut")
+	private StatutVoyage statut;
     
+    @OneToMany (mappedBy="voyage",fetch = FetchType.EAGER)
+//    @JsonBackReference(value="voyage-personnevoyage")
+    Set<PersonneVoyage> personneVoyage=new HashSet<>();
     
-    @OneToMany (mappedBy="voyage")
-//    @JsonBackReference
-    Set<PersonneVoyage> personneVoyage;
-    
+    @OneToMany (mappedBy="voyage", fetch = FetchType.EAGER)
+//  @JsonBackReference(value="voyage-activiteVoyage")
+    Set<ActiviteVoyage> activiteVoyage=new HashSet<> ();
   
     
 

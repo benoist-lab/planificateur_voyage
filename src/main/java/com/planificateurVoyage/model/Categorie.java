@@ -36,7 +36,7 @@ public class Categorie implements IDataModel {
 	}
 	
 	@OneToMany (mappedBy="categorie")
-	@JsonBackReference
+	@JsonBackReference(value="categorie-activite")
 	private Set<Activite> activite;
 	
 

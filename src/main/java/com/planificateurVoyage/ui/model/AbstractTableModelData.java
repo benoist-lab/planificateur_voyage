@@ -47,24 +47,6 @@ public abstract class AbstractTableModelData<T extends IDataModel> extends Abstr
 		return columnName.length;
 	}
 
-//	@Override
-//	public Object getValueAt(int rowIndex, int columnIndex) {
-//
-//			if (columnIndex==0)
-//			{
-//				return listPersonne.get(rowIndex).getId();
-//			}
-//			else if (columnIndex==1)
-//			{
-//				return listPersonne.get(rowIndex).getNom();
-//			}
-//			else if (columnIndex==2)
-//			{
-//				return listPersonne.get(rowIndex).getPrenom();
-//			}
-//
-//		return null;
-//	}
 
 	@Override
 	public String getColumnName(int col) {
@@ -77,6 +59,23 @@ public abstract class AbstractTableModelData<T extends IDataModel> extends Abstr
 		fireTableRowsInserted(listData.size()-1, listData.size()-1);
 	}
 	
+	public void removeData (T data) {
+		boolean nonTrouve=true;
+		int i=0;
+		
+		while ((i<getListData ().size()) && nonTrouve) {
+			if (getListData ().get(i).getId()==data.getId()) {
+				//BeanUtils.copyProperties(data, getListData ().get(i));
+				listData.remove(i);
+				
+				nonTrouve=false;
+				
+				fireTableRowsDeleted(i, i);
+			}
+			
+			i++;
+		}
+	}
 
 	public void replaceData (T data) {
 		boolean nonTrouve=true;
@@ -95,7 +94,20 @@ public abstract class AbstractTableModelData<T extends IDataModel> extends Abstr
 		}
 	}
 
-	
+	public boolean containtData (T data) {
+		boolean nonTrouve=true;
+		int i=0;
+		
+		while ((i<getListData ().size()) && nonTrouve) {
+			if (getListData ().get(i).getId()==data.getId()) {
+				nonTrouve=false;
+			}
+			
+			i++;
+		}
+		
+		return !nonTrouve;
+	}
 
 	public void clearData () {
 		int tailleList=listData.size();

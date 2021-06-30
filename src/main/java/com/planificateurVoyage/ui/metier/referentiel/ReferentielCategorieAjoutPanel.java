@@ -51,11 +51,9 @@ public class ReferentielCategorieAjoutPanel extends AbstractPanelTitle {
 	private JPanel panneauCentral;
 	private JPanelUI panneauControl;
 	
-	
-	/////////// temporaire pour test
+
 	private final CategorieComboBoxModel categorieComboBoxModel;
-//	private JComboBox cbCategorie;
-	///////////
+
 	
 	@Override
 	protected JPanel getPanneauCentral () {
@@ -64,11 +62,7 @@ public class ReferentielCategorieAjoutPanel extends AbstractPanelTitle {
 
 			panneauCentral.add(new JScrollPaneUI(getTableCategorie ()),BorderLayout.NORTH);
 			panneauCentral.add(getPanneauSaisie (),BorderLayout.CENTER);
-			
-			///////
-//			panneauSaisie.add(new JLabelUI("XXXXXXXXXX"),3,0);
-//			panneauSaisie.add(getCategorie (),3,1);
-			///////
+
 		}
 		
 		return panneauCentral;
@@ -129,14 +123,6 @@ public class ReferentielCategorieAjoutPanel extends AbstractPanelTitle {
 		return tfLibelle;
 	}
 	
-//	private JComboBox getCategorie () {
-//		if (cbCategorie==null) {
-//			cbCategorie=new JComboBoxUI (categorieComboBoxModel);
-//		}
-//		
-//		return cbCategorie;
-//	}
-	
 	
 	protected void init () {
 		
@@ -147,7 +133,6 @@ public class ReferentielCategorieAjoutPanel extends AbstractPanelTitle {
 	
 	public void initialiserModel () {
 		setModel (categorieService.readCategories());
-//		categorieComboBoxModel.setModel (categorieService.readCategories());
 	}
 	
 

@@ -47,7 +47,7 @@ public class Adresse implements IDataModel {
 	CodePostal codePostal;
 	
 	@OneToMany (mappedBy="adresse")
-	@JsonBackReference
+	@JsonBackReference(value="adresse-activite")
 	private Set<Activite> activite;
 	
 	public String getAdresseLigne () {

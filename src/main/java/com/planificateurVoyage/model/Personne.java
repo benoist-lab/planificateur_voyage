@@ -21,7 +21,6 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-//@Table(name="F_PERSONNE")
 @Table(name="F_PERSONNE",  uniqueConstraints={
 		   @UniqueConstraint(columnNames={"nom", "prenom"})
 		})
@@ -40,7 +39,7 @@ public class Personne implements IDataModel {
     private String prenom;
     
     @OneToMany (mappedBy="personne")
-    @JsonBackReference
+    @JsonBackReference(value="personne-personnevoyage")
     Set<PersonneVoyage> personneVoyage;
     
 }

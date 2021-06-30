@@ -17,6 +17,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultRowSorter;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -56,6 +57,9 @@ public class PersonneConsultationPanel extends AbstractPanelTitle {
 	private final PersonneService personneService;
 	
 	private final MainDialog dialogMain;
+	
+	private JDialog dialogMere=null;
+	private Personne personneSelectionnee=null;
 	
 	//UI
 	private JPanelUI panneauCentral;
@@ -112,10 +116,14 @@ public class PersonneConsultationPanel extends AbstractPanelTitle {
 			tablePersonne.addMouseListener(new DoubleClickTableMouseAdapter() {
 				@Override
 				public void onDoubleClick() {
-		        	modifierPersonne (((PersonneTableModel)getTablePersonne ().getModel()).getData(getRowClick ()));
+
+					if (getDialogMere ()!=null) {
+						selectionnerPersonne (((PersonneTableModel)getTablePersonne ().getModel()).getData(getRowClick ()));
+					}else {
+						modifierPersonne (((PersonneTableModel)getTablePersonne ().getModel()).getData(getRowClick ()));
+					}
 				}
 			});
-
 		}
 		
 		return tablePersonne;
@@ -153,6 +161,23 @@ public class PersonneConsultationPanel extends AbstractPanelTitle {
 		
 		return bRecherche;
 	}
+	
+
+	public void setDialogMere (JDialog dialogMere) {
+		this.dialogMere=dialogMere;
+	}
+	
+	public JDialog getDialogMere () {
+		return dialogMere;
+	}
+	
+	public void razPersonneSelectionnee () {
+		personneSelectionnee=null;
+	}
+	public Personne getPersonneSelectionnee () {
+		return personneSelectionnee;
+	}
+
 
 	// CONSTRUCTEUR
 	protected void init () {
@@ -192,6 +217,11 @@ public class PersonneConsultationPanel extends AbstractPanelTitle {
 		
 		dialogMain.voirPanneauPrincipal (MainDialog.PERSONNE_MODIFICATION);
 
+	}
+	
+	
+	protected void selectionnerPersonne (Personne personne) {
+		personneSelectionnee=personne;
 	}
 
 

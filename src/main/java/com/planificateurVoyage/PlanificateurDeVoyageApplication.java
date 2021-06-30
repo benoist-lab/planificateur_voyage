@@ -19,8 +19,6 @@ public class PlanificateurDeVoyageApplication {
 
 	public static void main(String[] args) {
 		
-		
-		//SpringApplication.run(PlanificateurDeVoyageApplication.class, args);
 		SpringApplicationBuilder builder = new SpringApplicationBuilder(PlanificateurDeVoyageApplication.class);
 		builder.headless(false);
 		ConfigurableApplicationContext context = builder.run(args);

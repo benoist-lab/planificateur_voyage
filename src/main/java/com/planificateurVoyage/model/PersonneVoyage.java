@@ -26,13 +26,13 @@ public class PersonneVoyage {
 	@ManyToOne
 	@MapsId ("PersonneId")
 	@JoinColumn (name="id_personne")
-    @JsonBackReference
+    @JsonBackReference(value="personnevoyage-personne")
 	private Personne personne;
 	
 	@ManyToOne
 	@MapsId ("VoyageId")
 	@JoinColumn (name="id_voyage")
-    @JsonBackReference
+    @JsonBackReference(value="personnevoyage-voyage")
 	private Voyage voyage;
 	
 	

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.planificateurVoyage.model.ActiviteVoyage;
 import com.planificateurVoyage.model.PersonneVoyage;
 import com.planificateurVoyage.model.Voyage;
+import com.planificateurVoyage.model.request.ActiviteVoyageAddRequest;
 import com.planificateurVoyage.model.request.PersonneVoyageAddRequest;
 import com.planificateurVoyage.model.request.VoyageCreateRequest;
 import com.planificateurVoyage.service.VoyageService;
@@ -28,11 +30,17 @@ public class VoyageController {
 	
 	private final VoyageService voyageService;
 	
+	// ++++++++++++++++
+	@GetMapping ("/voyage/{id}")
+	public ResponseEntity readVoyage (@PathVariable Long id) {
+		return ResponseEntity.ok(voyageService.readVoyage(id));
+	}
+	
+	
 	@GetMapping ("/voyages")
 	public ResponseEntity readVoyages () {
 		return ResponseEntity.ok(voyageService.readVoyages());
 	}
-	
 	
 	
 	@PostMapping ("/voyage")
@@ -40,6 +48,9 @@ public class VoyageController {
 		return ResponseEntity.ok(voyageService.createVoyage(request));
 	}
 	
+	//findVoyage	+++++++++++++++++++++++++++++++++++++
+	
+	// PERSONNE DU VOYAGE
 	@PostMapping ("/voyage/personne")
 	public ResponseEntity<PersonneVoyage> addPersonneToVoyage (@RequestBody PersonneVoyageAddRequest request){
 		return ResponseEntity.ok(voyageService.addPersonneToVoyage(request));
@@ -61,6 +72,10 @@ public class VoyageController {
 		return ResponseEntity.ok(voyageService.readVoyageParPersonne (id));
 	}
  
-	
+	// ACTIVITE DU VOYAGE
+	@PostMapping ("/voyage/activite")
+	public ResponseEntity<ActiviteVoyage> addActiviteToVoyage (@RequestBody ActiviteVoyageAddRequest request){
+		return ResponseEntity.ok(voyageService.addActiviteToVoyage(request));
+	}
 
 }

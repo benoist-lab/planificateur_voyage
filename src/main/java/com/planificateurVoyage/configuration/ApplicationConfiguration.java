@@ -15,6 +15,7 @@ import com.planificateurVoyage.ui.metier.activite.ActiviteCreationPanel;
 import com.planificateurVoyage.ui.metier.adresse.AdresseConsultationPanel;
 import com.planificateurVoyage.ui.metier.adresse.AdresseCreationPanel;
 import com.planificateurVoyage.ui.metier.adresse.ChoixAdresseDialog;
+import com.planificateurVoyage.ui.metier.personne.ChoixPersonneDialog;
 import com.planificateurVoyage.ui.metier.personne.PersonneConsultationPanel;
 import com.planificateurVoyage.ui.metier.personne.PersonneCreationPanel;
 import com.planificateurVoyage.ui.metier.referentiel.ReferentielCategorieAjoutPanel;
@@ -33,6 +34,7 @@ import com.planificateurVoyage.ui.model.PaysTableModel;
 import com.planificateurVoyage.ui.model.PersonneTableModel;
 import com.planificateurVoyage.ui.model.StatutVoyageComboBoxModel;
 import com.planificateurVoyage.ui.model.VilleComboBoxModel;
+import com.planificateurVoyage.ui.model.VoyageTableModel;
 import com.planificateurVoyage.ui.tool.JDialogUI;
 
 
@@ -88,6 +90,12 @@ public class ApplicationConfiguration {
 	  @Bean
 	  DefaultConfigurationBean configBeanPersonneTableModel () {
 	      return new DefaultConfigurationBean(PersonneTableModel.class,"personneTableModel","initialiserModel");
+	  }
+	  
+	  
+	  @Bean
+	  DefaultConfigurationBean configBeanChoixPersonneDialog () {
+	      return new DefaultConfigurationBean(ChoixPersonneDialog.class,"choixPersonneDialog","initialiserModel");
 	  }
 
 	  //Pays
@@ -166,6 +174,21 @@ public class ApplicationConfiguration {
 	  @Bean
 	  DefaultConfigurationBean configBeanVoyageCreationPanel () {
 	      return new DefaultConfigurationBean(VoyageCreationPanel.class,"voyageCreationPanel","init");
+	  }
+	  
+	  @Bean
+	  DefaultConfigurationBean configBeanVoyageModificationPanel () {
+		  Map<String,Object> properties;
+		  
+		  properties=new HashMap ();
+		  properties.put("mode",PersonneCreationPanel.MODE_MODIFICATION);
+		  
+	      return new DefaultConfigurationBean(VoyageCreationPanel.class,"voyageModificationPanel","init",properties);
+	  }
+	  
+	  @Bean
+	  DefaultConfigurationBean configBeanVoyageTableModel () {
+	      return new DefaultConfigurationBean(VoyageTableModel.class,"voyageTableModele","initialiserModel");
 	  }
 	  
 	  //Adresse

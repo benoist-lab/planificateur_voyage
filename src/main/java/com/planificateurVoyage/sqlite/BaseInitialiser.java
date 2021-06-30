@@ -102,6 +102,11 @@ public class BaseInitialiser {
 		Long idAdresse5=null;
 		
 		Long idActivitePiscinePlouf=null;
+		Long idActiviteOrlyVol412=null;
+		Long idActiviteAppartementBnB33=null;
+		Long idActiviteTheatreDesStars=null;
+		Long idActiviteOrlyVolI741i3=null;
+		Long idActiviteParcoAcquatico=null;
 		
 		Personne personne;
 		Voyage voyage;
@@ -188,80 +193,6 @@ public class BaseInitialiser {
 				logger.info("    ---> OK ");
 			
 				
-			
-				logger.info(" - initialisation des voyages");
-
-				voyageCreateRequest= new VoyageCreateRequest ();
-				
-				// Voyage à Pise
-				voyageCreateRequest.setLibelle("Voyage à Pise");
-				voyageCreateRequest.setDescription("jolie séjour à pise et promenade romantique.");
-				voyage=voyageService.createVoyage(voyageCreateRequest);
-				idVoyagePise=voyage.getId();
-				logger.info(" Voyage à pise="+idVoyagePise);
-				
-				// Week-end au Conquet
-				voyageCreateRequest.setLibelle("Week-end au Conquet");
-				voyageCreateRequest.setDescription("week-end au bord de mer.");
-				voyage=voyageService.createVoyage(voyageCreateRequest);
-				idWeekendConquet=voyage.getId();
-				logger.info(" Week-end au Conquet="+idWeekendConquet);
-				
-				// Escale à Brest
-				voyageCreateRequest.setLibelle("Escale à Brest");
-				voyageCreateRequest.setDescription("séjour d'une semaine à Brest et visite des environs.");
-				voyage=voyageService.createVoyage(voyageCreateRequest);
-				idEscaleBrest=voyage.getId();
-				logger.info(" Escale à Brest="+idEscaleBrest);
-				
-				logger.info("    ---> OK ");
-
-			
-				logger.info(" - initialisation des personnes d'un voyage");
-				
-				personneVoyageAddRequest= new PersonneVoyageAddRequest ();
-				
-				// venise
-				personneVoyageAddRequest.setVoyageId(idVoyagePise);
-				personneVoyageAddRequest.setPersonneId(idMartinHenri);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Voyage à Venise= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-				
-				personneVoyageAddRequest.setVoyageId(idVoyagePise);
-				personneVoyageAddRequest.setPersonneId(idDupuisYvette);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Voyage à Venise= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-			
-				
-				//conquet
-				personneVoyageAddRequest.setVoyageId(idWeekendConquet);
-				personneVoyageAddRequest.setPersonneId(idDuboisBertrand);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Week-end au Conquet= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-				
-				//brest
-				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
-				personneVoyageAddRequest.setPersonneId(idSachinSimon);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-	
-				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
-				personneVoyageAddRequest.setPersonneId(idVilleBoisPaul);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-	
-				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
-				personneVoyageAddRequest.setPersonneId(idLegenecJacques);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-	
-				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
-				personneVoyageAddRequest.setPersonneId(idDuboisBertrand);				
-				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
-				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
-	
-			
-				
 				logger.info(" - initialisation des pays");
 				
 				paysCreateRequest=new PaysCreateRequest ();
@@ -285,6 +216,8 @@ public class BaseInitialiser {
 				pays=paysService.createPays(paysCreateRequest);
 				idItalie=pays.getId();
 				logger.info(" ITALIE="+idItalie);
+				
+				logger.info("    ---> OK ");
 
 			
 				
@@ -292,8 +225,7 @@ public class BaseInitialiser {
 				
 				codePostalCreateRequest=new CodePostalCreateRequest ();
 				
-//				pays=new Pays ();
-//				pays.setId(idFrance);
+
 				pays=paysService.readPays(idFrance);
 				
 				codePostalCreateRequest.setCodePostal("29200");
@@ -341,8 +273,6 @@ public class BaseInitialiser {
 				
 				
 
-//				pays=new Pays ();
-//				pays.setId(idItalie);
 				pays=paysService.readPays(idItalie);
 
 
@@ -353,6 +283,8 @@ public class BaseInitialiser {
 				idCodePostalPise=codePostal.getId();
 				logger.info(" PISE="+idCodePostalPise);	
 				
+				
+				logger.info("    ---> OK ");
 
 
 				logger.info(" - initialisation des cat\u00E9gorie");
@@ -379,8 +311,10 @@ public class BaseInitialiser {
 				categorie=categorieService.createCategorie(categorieCreateRequest);
 				idCategorieLoisir=categorie.getId();
 				logger.info(" LOISIR="+idCategorieLoisir);
-				
+								
+				logger.info("    ---> OK ");
 
+				
 				logger.info(" - initialisation des statut voyage");
 				
 				statutVoyageCreateRequest=new StatutVoyageCreateRequest ();
@@ -402,6 +336,8 @@ public class BaseInitialiser {
 				logger.info(" ANNULE="+idAnnule);
 
 				
+				logger.info("    ---> OK ");
+
 				
 				
 				logger.info(" - initialisation des adresses");
@@ -460,16 +396,9 @@ public class BaseInitialiser {
 				idAdresse5=adresse.getId();
 				logger.info(" ADRESSE N°5="+idAdresse5);
 				
+				
+				logger.info("    ---> OK ");
 
-				
-				//idActivitePiscinePlouf
-				
-				Long idActiviteOrlyVol412=null;
-				Long idActiviteAppartementBnB33=null;
-				
-				Long idActiviteTheatreDesStars=null;
-				Long idActiviteOrlyVolI741i3=null;
-				Long idActiviteParcoAcquatico=null;
 				
 				
 				logger.info(" - initialisation des activit\u00E9s");
@@ -502,8 +431,7 @@ public class BaseInitialiser {
 				activite=activiteService.createActivite(activiteCreateRequest);
 				idActiviteAppartementBnB33=adresse.getId();
 				logger.info(" ACTIVITE 'Appartement BnB 33'="+idActiviteAppartementBnB33);
-				
-				
+
 				
 				categorie=categorieService.readCategorie(idCategorieLoisir);
 				adresse=adresseService.readAdresse(idAdresse3);
@@ -559,8 +487,93 @@ public class BaseInitialiser {
 				activite=activiteService.createActivite(activiteCreateRequest);
 				idActiviteParcoAcquatico=adresse.getId();
 				logger.info(" ACTIVITE 'Parco acquatico'="+idActiviteParcoAcquatico);
+				
+				logger.info("    ---> OK ");
 
 				
+				logger.info(" - initialisation des voyages");
+
+				voyageCreateRequest= new VoyageCreateRequest ();
+				
+				// Voyage à Pise
+				statutVoyage=statutVoyageService.readStatutVoyage(idNonRegle);
+				
+				voyageCreateRequest.setLibelle("Voyage à Pise");
+				voyageCreateRequest.setDescription("jolie séjour à pise et promenade romantique.");
+				voyageCreateRequest.setStatut(statutVoyage);
+				voyage=voyageService.createVoyage(voyageCreateRequest);
+				idVoyagePise=voyage.getId();
+				logger.info(" Voyage à pise="+idVoyagePise);
+				
+				// Week-end au Conquet
+				statutVoyage=statutVoyageService.readStatutVoyage(idRegle);
+				
+				voyageCreateRequest.setLibelle("Week-end au Conquet");
+				voyageCreateRequest.setDescription("week-end au bord de mer.");
+				voyageCreateRequest.setStatut(statutVoyage);
+				voyage=voyageService.createVoyage(voyageCreateRequest);
+				idWeekendConquet=voyage.getId();
+				logger.info(" Week-end au Conquet="+idWeekendConquet);
+				
+				// Escale à Brest
+				statutVoyage=statutVoyageService.readStatutVoyage(idAnnule);
+				
+				voyageCreateRequest.setLibelle("Escale à Brest");
+				voyageCreateRequest.setDescription("séjour d'une semaine à Brest et visite des environs.");
+				voyageCreateRequest.setStatut(statutVoyage);
+				voyage=voyageService.createVoyage(voyageCreateRequest);
+				idEscaleBrest=voyage.getId();
+				logger.info(" Escale à Brest="+idEscaleBrest);
+				
+				logger.info("    ---> OK ");
+
+			
+				logger.info(" - initialisation des personnes d'un voyage");
+				
+				personneVoyageAddRequest= new PersonneVoyageAddRequest ();
+				
+				// venise
+				personneVoyageAddRequest.setVoyageId(idVoyagePise);
+				personneVoyageAddRequest.setPersonneId(idMartinHenri);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Voyage à Venise= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+				
+				personneVoyageAddRequest.setVoyageId(idVoyagePise);
+				personneVoyageAddRequest.setPersonneId(idDupuisYvette);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Voyage à Venise= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+			
+				
+				//conquet
+				personneVoyageAddRequest.setVoyageId(idWeekendConquet);
+				personneVoyageAddRequest.setPersonneId(idDuboisBertrand);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Week-end au Conquet= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+				
+				//brest
+				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
+				personneVoyageAddRequest.setPersonneId(idSachinSimon);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+	
+				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
+				personneVoyageAddRequest.setPersonneId(idVilleBoisPaul);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+	
+				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
+				personneVoyageAddRequest.setPersonneId(idLegenecJacques);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+	
+				personneVoyageAddRequest.setVoyageId(idEscaleBrest);
+				personneVoyageAddRequest.setPersonneId(idDuboisBertrand);				
+				personneVoyage=voyageService.addPersonneToVoyage(personneVoyageAddRequest);
+				logger.info(" Escale à Brest= + "+personneVoyage.getPersonneVoyageKey().getPersonneId());
+	
+							
+				logger.info("    ---> OK ");
+
 				
 				logger.info("    ---> INITIALISATION COMPLETE ");
 			}

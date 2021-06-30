@@ -38,6 +38,7 @@ import com.planificateurVoyage.ui.tool.JComboBoxUI;
 import com.planificateurVoyage.ui.tool.JLabelUI;
 import com.planificateurVoyage.ui.tool.JPanelFormulaire;
 import com.planificateurVoyage.ui.tool.JPanelUI;
+import com.planificateurVoyage.ui.tool.JScrollPaneUI;
 import com.planificateurVoyage.ui.tool.JTextAreaUI;
 import com.planificateurVoyage.ui.tool.JTextFieldUI;
 import com.planificateurVoyage.ui.tool.adpater.FocusBorderAdpater;
@@ -150,7 +151,7 @@ public class ActiviteCreationPanel extends AbstractPanelTitle {
 			
 			panneauCentral.add(new JLabelUI("Description:"),4,0);
 			
-			JScrollPane scrollPaneDescription=new JScrollPane(getDescription ());
+			JScrollPane scrollPaneDescription=new JScrollPaneUI(getDescription ());
 			scrollPaneDescription.setSize (UIManager.getDimension(("TextArea.dimension")));
 			scrollPaneDescription.setBorder (BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 			panneauCentral.add(scrollPaneDescription,4,1);

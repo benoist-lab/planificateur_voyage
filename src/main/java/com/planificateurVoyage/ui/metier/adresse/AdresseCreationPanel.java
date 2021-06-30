@@ -59,11 +59,7 @@ public class AdresseCreationPanel extends AbstractPanelTitle {
     
 	
 	private final AdresseService adresseService;
-	
-	//private final CodePostalService codePostalService;
-	
-//	private final MainDialog dialogMain;		////////// BOTON AJOUTER
-	
+
 	
 	private final ReferentielCodePostalAjoutPanel referentielCodePostalAjoutPanelDialog;
 	
@@ -151,19 +147,7 @@ public class AdresseCreationPanel extends AbstractPanelTitle {
 			
 			panneauCentral.add(new JLabelUI("ville:"),4,2);
 			panneauCentral.add(getVille (),4,3);
-			
-			
-			////////// BOTON AJOUTER
-//			JButtonUI bAjouterCodePostal=new JButtonUI ("Ajouter");
-//			bAjouterCodePostal.setSize((Dimension) UIManager.get("Button.dimension"));
-//			bAjouterCodePostal.addActionListener(new ActionListener() {
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					ajouterCodePostal ();
-//				}				
-//			});
-//			panneauCentral.add(bAjouterCodePostal,4,4);
-			////////// BOTON AJOUTER
+
 			
 			panneauCentral.add(new JLabelUI("pays:"),5,0);
 			panneauCentral.add(getPays (),5,1);
@@ -424,11 +408,7 @@ public class AdresseCreationPanel extends AbstractPanelTitle {
 		}
 	}
 	
-	private void ajouterCodePostal () {
 
-//		dialogMain.voirPanneauPrincipal (MainDialog.REFERENTIEL_CODE_POSTAL_AJOUT);				////////// BOTON AJOUTER
-
-	}
 
 
 }

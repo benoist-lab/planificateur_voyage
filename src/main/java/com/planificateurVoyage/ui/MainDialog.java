@@ -11,6 +11,7 @@ import com.planificateurVoyage.ui.metier.activite.ActiviteCreationPanel;
 import com.planificateurVoyage.ui.metier.adresse.AdresseCreationPanel;
 import com.planificateurVoyage.ui.metier.personne.PersonneCreationPanel;
 import com.planificateurVoyage.ui.metier.referentiel.ReferentielCodePostalAjoutPanel;
+import com.planificateurVoyage.ui.metier.voyage.VoyageCreationPanel;
 import com.planificateurVoyage.ui.tool.JDialogUI;
 
 import lombok.RequiredArgsConstructor;
@@ -22,11 +23,13 @@ public class MainDialog extends JDialogUI {
 	public static final String ADRESSE_MODIFICATION="ADRESSE_MODIFICATION";
 	public static final String ACTIVITE_MODIFICATION="ACTIVITE_MODIFICATION";
 	public static final String REFERENTIEL_CODE_POSTAL_AJOUT="REFERENTIEL_CODE_POSTAL_AJOUT";
+	public static final String VOYAGE_MODIFICATION="VOYAGE_MODIFICATION";
 	
 	private final PersonneCreationPanel personneModificationPanel;
 	private final AdresseCreationPanel adresseModificationPanel;
 	private final ActiviteCreationPanel activiteModificationPanel;
 	private final ReferentielCodePostalAjoutPanel referentielCodePostalAjoutPanelDialog;
+	private final VoyageCreationPanel voyageModificationPanel;
 
 	private final JPanel panneauPrincipal=new JPanel();
 	
@@ -49,6 +52,10 @@ public class MainDialog extends JDialogUI {
 	
 	public ReferentielCodePostalAjoutPanel getReferentielCodePostalAjoutPanelDialog () {
 		return referentielCodePostalAjoutPanelDialog;
+	}
+	
+	public VoyageCreationPanel getVoyageModificationPanel () {
+		return voyageModificationPanel;
 	}
 	
 	public void init () {
@@ -75,6 +82,11 @@ public class MainDialog extends JDialogUI {
 		
 		panneauPrincipal.add(getActiviteModificationPanel (),ACTIVITE_MODIFICATION);
 		getActiviteModificationPanel ().setDialogMere(this);
+		
+		
+		panneauPrincipal.add(getVoyageModificationPanel (),VOYAGE_MODIFICATION);
+		getVoyageModificationPanel ().setDialogMere(this);
+		
 	}
 	
 	
@@ -93,6 +105,9 @@ public class MainDialog extends JDialogUI {
 				setTitle("modification adresse");
 			case ACTIVITE_MODIFICATION:
 				setTitle("modification activit\u00E9");
+				break;
+			case VOYAGE_MODIFICATION:
+				setTitle("modification voyage");
 				break;
 		
 		}

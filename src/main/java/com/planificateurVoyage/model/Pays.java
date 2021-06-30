@@ -33,8 +33,8 @@ public class Pays implements IDataModel {
 	
 	
 	@OneToMany (mappedBy="pays")
-	@JsonBackReference
-	Set<CodePostal> codePostal;
+	@JsonBackReference(value="pays-codepostal")
+	private Set<CodePostal> codePostal;
 	
 	
 	
