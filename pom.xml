@@ -66,6 +66,27 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			
+			<!-- pour générer un exécutable avec: maven package -->
+			<plugin>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-maven-plugin</artifactId>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>repackage</goal>
+			            </goals>
+			            <configuration>
+			                <classifier>spring-boot</classifier>
+			                <mainClass>
+			                  com.planificateurVoyage.PlanificateurDeVoyageApplication
+			                </mainClass>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+            
+            
 		</plugins>
 	</build>
 
