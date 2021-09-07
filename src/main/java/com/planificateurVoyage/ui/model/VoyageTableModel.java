@@ -21,7 +21,7 @@ public class VoyageTableModel extends AbstractTableModelData<Voyage> {
 
     private static final Logger logger = LoggerFactory.getLogger(VoyageTableModel.class);
     
-    private SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+    private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm dd/MM/yyyy");
     
 	@Override
 	public void initialiserColumnName() {

@@ -49,6 +49,14 @@
 		    <artifactId>awt-color-factory</artifactId>
 		    <version>1.0.0</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.jdatepicker/jdatepicker -->
+		<dependency>
+		    <groupId>org.jdatepicker</groupId>
+		    <artifactId>jdatepicker</artifactId>
+		    <version>1.3.4</version>
+		</dependency>
+		
     
 	</dependencies>
 

@@ -1,0 +1,68 @@
+
+
+
+div {
+  background-color: #F0F8FF;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3 {
+	color: #7B68EE;
+}
+
+h1{
+	text-align: center;
+	border: black 1px solid;
+}
+
+h2{
+	margin-left: 20px;
+	text-decoration: underline;
+}
+
+h3{
+	margin-left: 40px;
+	text-decoration: underline;
+}
+
+p{
+	text-align: justify;
+}
+
+a{
+	text-decoration: underline;
+}
+
+li a:hover {
+  background-color: #6495ED;
+}
+
+cite {
+  font-style: italic;
+}
+
+code {
+	background-color: white;
+	padding: 5px;
+	border: black 1px solid;
+	border-radius: 5px;
+}
+
+.menuInterne{
+	 background-color: white;
+	 display: inline-block;
+}
+
+.souligne{
+	text-decoration: underline;
+}
+
+.citation{
+	 background-color: white;
+}
+
+.sectionTexte {
+	padding-top:70px;
+	padding-bottom:20px
+}
+

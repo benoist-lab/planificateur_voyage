@@ -27,6 +27,7 @@ import com.planificateurVoyage.model.PersonneVoyage;
 import com.planificateurVoyage.model.PersonneVoyageKey;
 import com.planificateurVoyage.model.Voyage;
 import com.planificateurVoyage.model.request.ActiviteVoyageAddRequest;
+import com.planificateurVoyage.model.request.ActiviteVoyageRemoveRequest;
 import com.planificateurVoyage.model.request.PersonneVoyageAddRequest;
 import com.planificateurVoyage.model.request.PersonneVoyageRemoveRequest;
 import com.planificateurVoyage.model.request.VoyageCreateRequest;
@@ -36,6 +37,7 @@ import com.planificateurVoyage.repository.AdresseRepository;
 import com.planificateurVoyage.repository.PersonneRepository;
 import com.planificateurVoyage.repository.PersonneVoyageRepository;
 import com.planificateurVoyage.repository.VoyageRepository;
+import com.planificateurVoyage.tools.exception.ActiviteInvalidException;
 import com.planificateurVoyage.ui.MainFrame;
 
 import lombok.RequiredArgsConstructor;
@@ -139,22 +141,18 @@ public class VoyageService {
 		
 		//cas des personne ajouter/retirer au voyage
 		if (voyage.getId()!=null) {
-//			Map<Long,Personne> listPersonneeActuel=new HashMap<>();
-//
-//			for (PersonneVoyage personneVoyage:readVoyagePersonnes(voyage.getId())) {
-//				listPersonneeActuel.put(personneVoyage.getPersonneVoyageKey().getPersonneId(),personneVoyage.getPersonne());
-//			}
+
+			//recherche des personnes supprimiees
 			List<Long> listPersonneeActuel=new LinkedList<>();
 			for (PersonneVoyage personneVoyage:readVoyagePersonnes(voyage.getId())) {
 				listPersonneeActuel.add(personneVoyage.getPersonneVoyageKey().getPersonneId());
 			}
 			
 			List<Long> listPersonneeNouvelle=new LinkedList<>();
-			for (Personne pers:voyage.getPersonne()) {
+			for (Personne pers:voyage.getPersonnes()) {
 				listPersonneeNouvelle.add(pers.getId());
 			}
 			
-			//recherche des personnes supprimiees
 			for (Long id:listPersonneeActuel) {
 				if (!listPersonneeNouvelle.contains(id)) {
 					
@@ -172,10 +170,38 @@ public class VoyageService {
 					
 				}
 			}
+			
+			//recherche des activites supprimees
+			List<Long> listActiviteActuelle=new LinkedList<> ();
+			for (ActiviteVoyage activite:readVoyage (voyage.getId()).getActiviteVoyage()) {	// pourra etre alleger avec la creation d'une methode retournant directemant les activite d'un voyage
+				listActiviteActuelle.add(activite.getActiviteVoyageKey().getActiviteId());
+			}
+			
+			List<Long> listActiviteNouvelle=new LinkedList<> ();
+			for (ActiviteVoyage activite:voyage.getActivites()) {
+				listActiviteNouvelle.add(activite.getActiviteVoyageKey().getActiviteId());
+			}
+			
+			for (Long id:listActiviteActuelle) {
+				if (!listActiviteNouvelle.contains(id)) {
+					
+
+					logger.info("   -remove activite: "+id);
+					
+					ActiviteVoyageRemoveRequest request=new ActiviteVoyageRemoveRequest();
+					
+					request.setActiviteId(id);
+					request.setVoyageId(voyageToCreate.getId());
+					
+					removeActiviteToVoyage(request);
+
+				}
+			}
+			
 		}
 
 		//ajout/Mise a jour des personnes
-		for (Personne pers:voyage.getPersonne()) {
+		for (Personne pers:voyage.getPersonnes()) {
 	    		
     		logger.info("   -personne: "+pers.getId());
 
@@ -189,6 +215,25 @@ public class VoyageService {
     		logger.info("      OK");
 		}
 
+		
+		// ajout/mise a jour des activite
+		for (ActiviteVoyage activite:voyage.getActivites()) {
+			
+    		logger.info("   -activite: "+activite.getActiviteVoyageKey().getActiviteId());
+
+    		ActiviteVoyageAddRequest activiteVoyageAddRequest=new ActiviteVoyageAddRequest ();
+    		
+    		activiteVoyageAddRequest.setActiviteId(activite.getActiviteVoyageKey().getActiviteId());
+    		activiteVoyageAddRequest.setVoyageId(activite.getActiviteVoyageKey().getVoyageId());
+    		activiteVoyageAddRequest.setDateDebut(activite.getDateDebut());
+    		activiteVoyageAddRequest.setDateFin(activite.getDateFin());
+
+    		ActiviteVoyage activiteVoyage=addActiviteToVoyage (activiteVoyageAddRequest);
+    		voyageToCreate.getActiviteVoyage().add(activiteVoyage);
+    		
+    		logger.info("      OK");	
+		}
+		
     	
     	return voyageToCreate;
 	}
@@ -267,25 +312,27 @@ public class VoyageService {
     	
     	ActiviteVoyageKey activiteVoyageKey;
     	ActiviteVoyage activiteVoyage;
-    	Optional<Activite> activite;
-    	Optional<Voyage> voyage;
+//    	Optional<Activite> activite;
+//    	Optional<Voyage> voyage;
     	
-    	// l'activite
-    	activite=activiteRepository.findById(request.getActiviteId());
-    	if (!activite.isPresent()) {
-    		throw new EntityNotFoundException("l'activit\u00E9 "+request.getActiviteId()+" n'existe pas");
-    	}
+//    	// l'activite
+//    	activite=activiteRepository.findById(request.getActiviteId());
+//    	if (!activite.isPresent()) {
+//    		throw new EntityNotFoundException("l'activit\u00E9 "+request.getActiviteId()+" n'existe pas");
+//    	}
+//    	
+//    	// le voyage
+//    	voyage=voyageRepository.findById(request.getVoyageId());
+//    	if (!voyage.isPresent()) {
+//    		throw new EntityNotFoundException ("le voyage "+request.getVoyageId()+" n'existe pas");
+//    	}
+//    	
+//    	// les dates
+//    	if (request.getDateDebut().getTime()>request.getDateFin().getTime()) {
+//    		throw new EntityNotFoundException ("les dates sont invalides");
+//    	}
     	
-    	// le voyage
-    	voyage=voyageRepository.findById(request.getVoyageId());
-    	if (!voyage.isPresent()) {
-    		throw new EntityNotFoundException ("le voyage "+request.getVoyageId()+" n'existe pas");
-    	}
     	
-    	// les dates
-    	if (request.getDateDebut().getTime()>request.getDateFin().getTime()) {
-    		throw new EntityNotFoundException ("les dates sont invalides");
-    	}
     	
     	
     	// la cle
@@ -299,8 +346,37 @@ public class VoyageService {
     	activiteVoyage.setDateDebut(request.getDateDebut());
     	activiteVoyage.setDateFin(request.getDateFin());
     	
+    	validerActivite (activiteVoyage);
+    	
     	return activiteVoyageRepository.save(activiteVoyage);
     }
+    
+    public ActiviteVoyage removeActiviteToVoyage(ActiviteVoyageRemoveRequest request) {
+    	ActiviteVoyageKey  key=new ActiviteVoyageKey ();
+    	ActiviteVoyage activite=new ActiviteVoyage ();
+    	Optional<Activite> activiteExistante;
+    	Optional<Voyage> voyageExistant;
+    	
+    	activiteExistante=activiteRepository.findById(request.getActiviteId());
+    	if (!activiteExistante.isPresent()) {
+    		throw new EntityNotFoundException ("L'activit\u00E9 "+request.getActiviteId()+" n'existe pas.");
+    	}
+    	
+    	voyageExistant=voyageRepository.findById(request.getVoyageId());
+    	if (!voyageExistant.isPresent()) {
+    		throw new EntityNotFoundException ("le voyage "+request.getVoyageId()+" n'existe pas.");
+    	}
+    	
+    	key.setActiviteId(request.getActiviteId());
+    	key.setVoyageId(request.getVoyageId());
+    	
+    	activite.setActiviteVoyageKey(key);
+    	
+    	activiteVoyageRepository.delete(activite);
+    	
+    	return activite;
+    }
+    
 
     public double calculerCoutTotal (Voyage voyage) {
     	double cout=0;
@@ -348,4 +424,33 @@ public class VoyageService {
 		return new Date (d);
     	
     }
+    
+    
+	public void validerActivite (ActiviteVoyage activite) {
+    	Optional<Activite> activiteCherche;
+    	Optional<Voyage> voyage;
+
+    	// l'activite
+    	activiteCherche=activiteRepository.findById(activite.getActiviteVoyageKey().getActiviteId());
+    	if (!activiteCherche.isPresent()) {
+    		throw new EntityNotFoundException("l'activit\u00E9 "+activite.getActiviteVoyageKey().getActiviteId()+" n'existe pas");
+    	}
+    	
+    	// le voyage
+    	voyage=voyageRepository.findById(activite.getActiviteVoyageKey().getVoyageId());
+    	if (!voyage.isPresent()) {
+    		throw new EntityNotFoundException ("le voyage "+activite.getActiviteVoyageKey().getVoyageId()+" n'existe pas");
+    	}
+    	
+    	// les dates
+		if (activite.getDateDebut().getTime()>activite.getDateFin().getTime()) {
+			throw new ActiviteInvalidException ("les date de d\u00E9but et date de fin sont invalides.");
+		}
+		
+		
+	}
+	
+  
+    
+    
 }

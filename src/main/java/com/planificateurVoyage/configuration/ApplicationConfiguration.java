@@ -21,6 +21,7 @@ import com.planificateurVoyage.ui.metier.personne.PersonneCreationPanel;
 import com.planificateurVoyage.ui.metier.referentiel.ReferentielCategorieAjoutPanel;
 import com.planificateurVoyage.ui.metier.referentiel.ReferentielCodePostalAjoutPanel;
 import com.planificateurVoyage.ui.metier.referentiel.ReferentielPaysAjoutPanel;
+import com.planificateurVoyage.ui.metier.voyage.ActiviteAjoutAVoyageDialog;
 import com.planificateurVoyage.ui.metier.voyage.VoyageConsultationPanel;
 import com.planificateurVoyage.ui.metier.voyage.VoyageCreationPanel;
 import com.planificateurVoyage.ui.model.ActiviteTableModel;
@@ -189,6 +190,11 @@ public class ApplicationConfiguration {
 	  @Bean
 	  DefaultConfigurationBean configBeanVoyageTableModel () {
 	      return new DefaultConfigurationBean(VoyageTableModel.class,"voyageTableModele","initialiserModel");
+	  }
+	  
+	  @Bean
+	  DefaultConfigurationBean configBeanActiviteAjoutAVoyageDialog () {
+	      return new DefaultConfigurationBean(ActiviteAjoutAVoyageDialog.class,"activiteAjoutAVoyageDialog","init");
 	  }
 	  
 	  //Adresse

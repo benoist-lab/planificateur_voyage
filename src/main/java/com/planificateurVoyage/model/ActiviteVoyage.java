@@ -40,7 +40,31 @@ public class ActiviteVoyage {
 	
 	@Column (name="date_fin")
 	private Date dateFin;
+
+
 	
-	
+    @Override
+    public boolean equals(Object o) {
+   
+        if (o == this) { 
+            return true; 
+        } 
+  
+        if (!(o instanceof ActiviteVoyage)) {
+            return false; 
+        } 
+        
+        if ((activiteVoyageKey.getActiviteId()==((ActiviteVoyage)o).activiteVoyageKey.getActiviteId())
+        	&& (activiteVoyageKey.getVoyageId()==((ActiviteVoyage)o).activiteVoyageKey.getVoyageId())
+//        	&& (dateDebut.equals(((ActiviteVoyage)o).getDateDebut()))
+//        	&& (dateFin.equals(((ActiviteVoyage)o).getDateFin()))
+        		) {
+        	return true;
+        }
+        
+        return false;
+    }
+    
+
 
 }

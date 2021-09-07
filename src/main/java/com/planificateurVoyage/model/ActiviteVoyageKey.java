@@ -19,6 +19,5 @@ public class ActiviteVoyageKey implements Serializable {
 	@Column (name="id_voyage")
 	private Long voyageId;
 	
-	
 
 }

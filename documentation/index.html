@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<!-- SEO (Search engine optimization) -->
+	<title>Le planificateur de voyage</title>
+	
+	<meta name="description" content="application projet java swing spring sqlite rest">
+	
+	<!-- Feuille de style-->
+	<link rel="stylesheet" href="./site/css/style.css">
+	
+	<!-- Meta Data-->
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+	<meta name="author" content="Benoist Dubuc">
+</head>
+<body>
+
+	<!-- Menu principale -->
+	<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+	  <ul class="navbar-nav">
+	    <li class="nav-item active">
+	      <a class="nav-link" href="#">Accueil</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="./site/page/cahierDesCharges.html">Cahier des charges</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="./site/page/etudeFonctionnelle.html">Etude fonctionnelle</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="./site/page/specificationTechnique.html">Spécifications techniques</a>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" href="./site/page/systemeInformation.html">Système d'information</a>
+	    </li>
+
+	  </ul>
+	</nav>
+
+<div class="container sectionTexte">
+
+
+	<h1>Projet Planificateur de voyage</h1>
+	
+	<!-- Menu interne -->	
+	<div class="menuInterne sectionTexte">
+		<span class="souligne">Menu</span>
+		<ul class="nav flex-column">
+			<li class="nav-item">
+				<a class="nav-link" href="#presentation">Présentation</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#execution">Exécution</a>
+				
+					<ul>
+						<li class="nav-item">
+							<a class="nav-link" href="#recupererprojet">Récupérer le projet</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#executerprojet">Exécuter projet</a>
+						</li>
+					</ul>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#miseenplace">Mise en place du projet</a>
+							
+					<ul>
+						<li class="nav-item">
+							<a class="nav-link" href="#origineprojet">Origine du projet</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#enquetemetier">Enquête métier</a>
+						</li>
+					</ul>
+			</li>
+		</ul>
+	</div>
+
+
+	
+	<!--  Présentation -->
+	<div id="presentation" class="sectionTexte">
+		<h2>Présentation</h2>
+		<p>Le Planificateur de voyage est une application lourde (logiciel), qui vise à gérér des voyage et les planifier pour une ou un groupe de personne.</p>
+		
+		<span class="souligne">technoligie utilisée:</span>
+		<ul>
+			<li>java</li>
+			<li>spring: pour mon étude/entrainnement personnel.</li>
+			<li>Spring JPA: pour mon étude/entrainnement personnel.</li>
+			<li>swing: pour le rendu graphique.</li>
+			<li>SQLite: imposé par le client.</li>
+		</ul>
+		<p>j'ai aretté le développement du projet sur les fonctionnalités primaires mais complêtes: jusqu'a la gestion d'un voyage.</p>
+		<p>le projet est ouvert sous GIT dans un but de présentation mais surtout pour que le client puisse le faire récupérer par d'autre dévellopeur et leur faire continuer le travail pour son utilisation personnel (édition d'une fiche de voyage PDF, grille des voyage XLS... ). </p>
+		<p><span class="souligne">Remarque:</span> pour mon étude/entrainnement, je déploie en même temps les services de l'application en WebService REST. Mais il n'ont aucune utilité dans l'application. Quelque fonctionnalité son aussi ajouté pour d'autre programme d'entrainnement.</p>
+		<p><span class="souligne">Remarque:</span> mise à part les documents fondemmentaux, les spécifications restent succintes pour une question de rapidité de production.</p>
+	</div>	
+	
+	<!-- Exécution -->
+	<div id="execution" class="sectionTexte">
+		<h2>Exécution</h2>
+			
+		<h3 id="recupererprojet" class="sectionTexte">Récupérer le projet</h3>
+		<p>vous pouvez récupérer: </p>
+		<p>l'exécutable stocké sous git: <a href="https://github.com/benoist-lab/planificateur_voyage/tree/main/target" target="_blank">l'exécutable</a></p>
+		<p>le code source du projet sous GIT:  <a href="https://github.com/benoist-lab/planificateur_voyage" target="_blank">le projet</a></p>
+	
+			
+		
+		<h3 id="executerprojet" class="sectionTexte">Exécuter le projet</h3>
+		<p><span class="souligne">pré-requis:</span><i> avoir java d'installé</i></p>
+		<p>Il faut exécuter le fichier .jar récupéré (voir ci-dessus).</p>
+			
+		<p>exemple avec le jar de la V0.2 qui a pour nom de fichier "PlanificateurDeVoyage-0.0.2-SNAPSHOT.jar": </p>
+			<code>java "PlanificateurDeVoyage-0.0.2-SNAPSHOT.jar"</code><br/>
+		<p>ou sous <span class="souligne"><b>windows</b></span> double clic sur le fichier jar.</p>
+	</div>	
+
+
+	
+
+	<!-- Mise en place -->	
+	<div id="miseenplace" class="sectionTexte">
+		<h2>Mise en place du projet</h2>
+		
+		<h3 id="origineprojet" class="sectionTexte">Origine du projet</h3>
+		<p>voici le "cahier des charge" d'origine issue de l'idée du client (copie du mail du client):</p>
+		<div  id="cahierdescharges">
+			<pre class="citation">
+				L’idée est d’avoir un genre de « planificateur » de voyage, permettant d’organiser un voyage, et de visualiser le coût.
+				Voilà ce que je vois :
+				-        Ajout de personne (nom – prénom)
+				-        Ajout d’un voyage
+				-        Ajout de personne au voyage
+				-        Définition de la date d’aller et de la date de retour
+				-        Ajout d’événement par catégorie (nom – adresse – coût – date) :
+				o   Transports :
+					§  Avion
+					§  Train
+					§  Voiture
+				o   Hébergements :
+					§  Hôtels
+					§  Locations
+				o   Restauration
+					§  Restaurants
+					§  Courses
+				o   Loisirs
+					§  Libre (musées, monuments, sites touristiques, jeux…)
+				-        Visualisation des activités avec tri par date, catégories ou cout.
+				-        Visualisation des totaux pour chaque catégorie, totaux globaux et totaux par personne.
+				 
+				Côté technologies, je te laisse faire ce que tu maîtrises le mieux, histoire que tu ailles rapidement.
+				La seule contrainte est au niveau de la base de données : si celle-ci pouvait être du SQLite , afin de pouvoir être exploiter facilement hors connexion.
+			</pre>
+		</div>
+	
+		
+		
+		<h3 id="enquetemetier" class="sectionTexte">Enquête métier</h3>
+		<p>Parti d'une idée succincte du client, il s'en est suivi au moins un mois d'échange mail (dû au confinement) afin de déterminer plus concrètement son besoin.</p>
+		<ul>
+			<li>questionnement sur l'exactitude des fonctionnalités voulues.</li>
+			<li>définition du Système d'Information (Base de donnée)</li>
+			<li>Prototype Maquette de l'application, afin que le client puissent voir approximativement comme fonctionne sont idée et les besoin qu'elle réclame.</li>
+			<li>...</li>
+		</ul>
+	</div>
+
+
+	
+
+	<!--  footer -->
+	<footer>
+		<div class="d-flex flex-row-reverse">
+			<a href="#" class="btn btn-primary" role="button">Retour</a>
+		</div>
+	</footer>
+</div>
+
+</body>
+</html>

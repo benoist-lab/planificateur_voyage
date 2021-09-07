@@ -7,6 +7,8 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import com.planificateurVoyage.model.CodePostal;
 import com.planificateurVoyage.model.Pays;
 import com.planificateurVoyage.model.Personne;
 import com.planificateurVoyage.model.request.PaysCreateRequest;
+import com.planificateurVoyage.model.request.PaysDeleteRequest;
 import com.planificateurVoyage.model.request.PersonneCreateRequest;
 import com.planificateurVoyage.repository.PaysRepository;
 import com.planificateurVoyage.repository.PersonneRepository;
@@ -24,6 +27,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class PaysService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(PaysService.class);
 	
 	private final PaysRepository paysRepository;
 	
@@ -52,10 +57,34 @@ public class PaysService {
 		Pays paysCritere=new Pays ();
 		paysCritere.setPays(pays.getPays());
 		
+		/*
 		if (isPaysExiste (paysCritere))
 		{
 			throw new EntityExistsException ("le pays existe");
 		}
+		 */
+		if (pays.getId()==null) {
+			if (isPaysExiste (paysCritere))
+			{
+				throw new EntityExistsException ("le pays existe");
+			}
+		} else {
+			if (readPays (pays.getId())==null) {
+				throw new EntityNotFoundException ("le pays n'existe pas");
+			}
+		}
+		
+		/*
+		if (request.getId()==null) {
+			if (isAdresseExiste (adresseCritere)) {
+				throw new EntityExistsException ("l'adresse existe");
+			}
+		}
+		else {
+			if (readAdresse (request.getId())==null) {
+				throw new EntityExistsException ("l'adresse n'existe pas");
+			}
+		}		 */
 		
 		return insererPays (pays);
 	}
@@ -98,6 +127,22 @@ public class PaysService {
 		return paysRepository.findAll(PaysRepository.hasPays (pays)).size()>0;
 	}
 	
-	
+	public Pays supprimerPays (PaysDeleteRequest request) {
+		Pays pays=null;
+		
+		//BeanUtils.copyProperties(request, pays);
+		
+		try {
+			pays=readPays (request.getId());
+		}catch (Exception e) {
+			throw new EntityNotFoundException ("Le pays ("+request.getId()+") à supprimer n'existe pas");
+		}
+		
+		logger.info("delete du pays: "+pays.getId());
+		
+		paysRepository.delete(pays);
+		
+		return pays;
+	}
 
 }

@@ -74,6 +74,10 @@ public class JPanelFormulaire extends JPanelUI {
 		
 		return marge+x;
 	}
+	
+	public int getHauteurLigne () {
+		return hauteurLigne;
+	}
 		
 	
 }
